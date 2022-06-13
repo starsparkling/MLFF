@@ -647,7 +647,10 @@ def train_kalman(sample_batches, model, kalman, criterion, last_epoch, real_lr):
     loss_Ei = torch.zeros([1,1])
     loss_F = torch.zeros([1,1])
 
-    # update loss with repsect to the data used
+    """
+        update loss with repsect to the data used.
+        At least 2 flags should be true. 
+    """
     if pm.kfnn_trainEi:
         loss_Ei = criterion(Ei_predict, Ei_label)
     if pm.kfnn_trainEtot:
@@ -662,10 +665,14 @@ def train_kalman(sample_batches, model, kalman, criterion, last_epoch, real_lr):
     loss_Egroup = 0.0
 
     loss = loss_F + loss_Etot + loss_Ei 
-    """
-    info("mse_etot = %.16f, mse_force = %.16f, RMSE_etot = %.16f, RMSE_force = %.16f"\
-     %(loss_Etot, loss_F, loss_Etot ** 0.5, loss_F ** 0.5))
-    """
+
+    if pm.kfnn_trainForce and pm.kfnn_trainEi:
+        info("RMSE_Ei = %.12f, RMSE_Force = %.12f" %(loss_Ei ** 0.5, loss_F ** 0.5))
+
+    elif pm.kfnn_trainEtot and pm.kfnn_trainForce:  
+        info("RMSE_Etot = %.12f, RMSE_Force = %.12f" %(loss_Etot ** 0.5, loss_F ** 0.5))
+    else:
+        info("RMSE_Etot = %.12f, RMSE_Ei = %.12f, RMSE_Force = %.16f" %(loss_Etot ** 0.5, loss_Ei ** 0.5, loss_F ** 0.5))
     return loss, loss_Etot, loss_Ei, loss_F
     
 def valid(sample_batches, model, criterion):
