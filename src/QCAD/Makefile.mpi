@@ -12,10 +12,10 @@ SHFLAGS =	-fPIC
 DEPFLAGS =	-M
 
 #LINK =		mpicxx
-#LINKFLAGS =	-g -O3 -std=c++11
+#LINKFLAGS =	-O3 -std=c++11
 LINK =		mpiifort
-#LINKFLAGS =	-g -O3 -std=c++11 -cxxlib -nofor_main
-LINKFLAGS =	-g -traceback -O3 -cxxlib -nofor_main -mkl
+#LINKFLAGS =	-O3 -std=c++11 -cxxlib -nofor_main
+LINKFLAGS =     -O3 -cxxlib -nofor_main -mkl
 LIB =
 SIZE =		size
 
