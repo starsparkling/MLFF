@@ -79,7 +79,10 @@
       itype=itype_atom(j)
       num_type_M(itype)=num_type_M(itype)+1
         if(num_type_M(itype).gt.m_neigh) then
-        write(6,*) "num.gt.m_neigh, stop", m_neigh
+        !write(6,*) "Error! maxNeighborNum too small", m_neigh
+        !write(6,*) "Error! A larger maxNeighborNum is needed,
+        !which is currently", m_neigh
+        write(6,*) "Error! maxNeighborNum too small", m_neigh
         stop
         endif
       list_neigh_M(num_type_M(itype),itype,i)=j
@@ -127,7 +130,9 @@
       num_type_M(itype)=num_type_M(itype)+1
 
         if(num_type_M(itype).gt.m_neigh) then
-        write(6,*) "num.gt.m_neigh, stop",m_neigh
+            !write(6,*) "Error! maxNeighborNum too small",m_neigh
+            write(6,*) "Error! maxNeighborNum too small", m_neigh
+            
         stop
         endif
       list_neigh_M(num_type_M(itype),itype,i)=j
