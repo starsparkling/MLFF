@@ -46,9 +46,10 @@ if pm.isCalcFeat:
             pp.calFeatGrid()
     print('generating feature')
     for i in pm.use_Ftype:
-        # liuliping: gen_2b_feature in PATH
-        # command=pm.genFeatDir+"/"+pm.Ftype_name[i]+".x > ./output/out"+str(i)
-        command=pm.Ftype_name[i]+".x > ./output/out"+str(i)
+        # Do not dump the output into file so that errors can be shown on the screen. 
+        
+        #command=pm.Ftype_name[i]+".x > ./output/out"+str(i)
+        command = pm.Ftype_name[i]+".x"
         print(command)
         os.system(command)
 else:

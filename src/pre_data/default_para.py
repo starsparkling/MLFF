@@ -127,7 +127,7 @@ use_storage_scaler = False
 storage_scaler = False
 
 n_epoch = 100
-itype_Ei_mean = [166.46,437.4]
+itype_Ei_mean = [0.0 for i in range(10)]
 batch_size = 1  # only support bn=1 so far
 nfeat_type=len(use_Ftype)
 Ftype1_para={               #2b
@@ -299,10 +299,9 @@ test_ratio = 0.2
 activation_func='softplus'     # could choose 'softplus' and 'elup1' now
 ntypes=len(atomType)
 nLayers = 3
-nNodes = np.array([[60,60],[30,30],[1,1]])
-b_init=np.array([28.5,528.5])      # energy of one atom, for different types, just a rough value
-#nLayers = 4
-#nNodes = np.array([[16,],[64,],[32,],[1,]])
+nNodes = np.array([[15,15],[15,15],[1,1]])
+b_init=np.array([0.0 for i in range(10)])      # energy of one atom, for different types, just a rough value
+
 dwidth = 3.0
 
 #================================================================================
