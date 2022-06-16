@@ -8,7 +8,7 @@ import shutil
 import numpy as np
 import pandas as pd
 
-import use_para as pm
+import src.pre_data.use_para as pm
 # import preparatory_work as ppw
 
 

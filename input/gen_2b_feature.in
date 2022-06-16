@@ -1,0 +1,8 @@
+6.0, 100             !  Rc_M, m_neigh 
+1               ! ntype 
+29              ! iat-type 
+6.0,5.8,3,0.2,0.5      !Rc,Rm,iflag_grid,fact_base,dR1 
+24              ! n2b 
+0.3    ! E_tolerance  
+3    ! iflag_ftype 
+1    ! recalc_grid, 0 read from file, 1 recalc 

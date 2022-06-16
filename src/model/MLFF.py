@@ -9,14 +9,14 @@ from torch.nn import init
 from torch.autograd import Variable
 import sys, os
 sys.path.append(os.getcwd())
-#import parameters as pm    
-import use_para as pm    
+#import config.parameters as pm    
+import src.pre_data.use_para as pm    
 import time
 # import numba
 # from numba import jit
-# import prepare as pp
+# import src.pre_data.prepare as pp
 # pp.readFeatnum()
-import parse_input
+import src.pre_data.parse_input as parse_input
 parse_input.parse_input()
 
 if pm.torch_dtype == 'float32':

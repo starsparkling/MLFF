@@ -1,11 +1,11 @@
 import os
-import use_para as pm
+import src.pre_data.use_para as pm
 import numpy as np
 import numpy as cp
 import pandas as pd
 import re
 
-
+import config.parameters as input_parameters
 def pdFloatFormat(x):
     li1=re.split('E+', str(x),flags=re.IGNORECASE)
     li2=re.split('E-', str(x),flags=re.IGNORECASE)
@@ -25,7 +25,7 @@ def pdFloatFormat(x):
         x2=str(x)
     return x2
 
-def collectAllSourceFiles(workDir=pm.trainSetDir,sourceFileName='MOVEMENT'):
+def collectAllSourceFiles(workDir=input_parameters.trainSetDir,sourceFileName='MOVEMENT'):
     '''
     搜索工作文件夹，得到所有MOVEMENT文件的路径，并将之存储在pm.sourceFileList中
     

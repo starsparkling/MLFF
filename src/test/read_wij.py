@@ -5,7 +5,7 @@
 import os
 import sys
 sys.path.append(os.getcwd())
-import parameters as pm
+import config.parameters as pm
 codepath=os.path.abspath(sys.path[0])
 print(codepath)
 sys.path.append(codepath+'/../model')

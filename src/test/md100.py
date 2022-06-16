@@ -6,7 +6,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import os, sys
 sys.path.append(os.getcwd())
-import parameters as pm
+import config.parameters as pm
 
 class md100Image():
     def __init__(self, num_atoms, lattice, type_atom, x_atom, f_atom, e_atom, ddde):

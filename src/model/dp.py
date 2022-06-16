@@ -13,9 +13,9 @@ import datetime
 import time
 import math
 sys.path.append(os.getcwd())
-#import parameters as pm    
-import use_para as pm    
-# import prepare as pp
+#import config.parameters as pm    
+import src.pre_data.use_para as pm    
+# import src.pre_data.prepare as pp
 # pp.readFeatnum()
 from model.embedding import EmbedingNet, FittingNet
 from model.calculate_force import CalculateForce

@@ -9,14 +9,14 @@ sys.path.append(os.getcwd())
 
 os.system('mkdir -p input output fread_dfeat')
 # liuliping: diy parameters in calculation_dir/parameters.py; other parameters use src/lib/default_para.py===old parameters.py
-import use_para as pm
-import parse_input
+import src.pre_data.use_para as pm
+import src.pre_data.parse_input as parse_input
 parse_input.parse_input()
 # liuliping: parameters changed
 pm.fortranFitSourceDir = codepath + '/../src/fit'
-import prepare as pp
+import src.pre_data.prepare as pp
 #import lppData as lppData
-import fortran_fitting as ff
+import src.pre_data.fortran_fitting as ff
 # genFeatInputFile='./gen_feature.in'
 
 
@@ -45,7 +45,7 @@ if pm.isCalcFeat:
             calFeatGrid=True
             pp.calFeatGrid()
     print('generating feature')
-    for i in pm.use_Ftype:
+    for i in pm.use_Ftype: #Here is an error, use_Ftype is in parameters.py other than user_para.py
         # Do not dump the output into file so that errors can be shown on the screen. 
         
         #command=pm.Ftype_name[i]+".x > ./output/out"+str(i)
@@ -63,7 +63,20 @@ if pm.isFitVdw:
 else:
     if hasattr(pm, 'vdwInput'):
         print("vdwInput found; use diy vdw parameters in parameters.py")
-        pp.writeVdwInput(pm.fitModelDir, vdw_input)
+        vdw_input = pm.vdwInput
+    else:
+        strength_rad = 0.0
+        if pm.isFitVdw == True:
+            strength_rad = 1.0
+        vdw_input = {
+        'ntypes': pm.ntypes,
+        'nterms': 1,
+        'atom_type': pm.atomType,
+        'rad': [strength_rad for i in range(pm.ntypes)],
+        'e_ave': [0.0 for i in range(pm.ntypes)],
+        'wp': [ [0.0 for i in range(pm.ntypes*1)] for i in range(pm.ntypes)]
+        }
+    pp.writeVdwInput(pm.fitModelDir, vdw_input) #error
     pp.prepare_novdw()    # create 0 vdw
 
 if pm.isFitLinModel:
@@ -71,8 +84,7 @@ if pm.isFitLinModel:
 
 if pm.isRunMd:
     # import preparatory_work as ppw
-    from md_runner import MdRunner
-
+    from src.pre_data.md_run100 import MdRunner
     mdRunner=MdRunner()
     if pm.mdRunModel=='opt':
         mdRunner.runOPT(fmax=pm.mdOptfmax,steps=pm.mdOptsteps)

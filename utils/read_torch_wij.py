@@ -12,8 +12,8 @@ import joblib
 codepath=os.path.abspath(sys.path[0])
 sys.path.append(codepath+'/../src/lib')
 sys.path.append(os.getcwd())
-import use_para as pm
-import parse_input
+import src.pre_data.use_para as pm
+import src.pre_data.parse_input as parse_input
 parse_input.parse_input()
 # every py file in git_version/bin/ should be invoke directly from shell, and must parse parameters.
 '''
@@ -22,8 +22,8 @@ parse_input.parse_input()
 codepath=os.path.abspath(sys.path[0])
 sys.path.append(codepath+"/../src/pre_data")
 
-import use_para as pm
-import parse_input
+import src.pre_data.use_para as pm
+import src.pre_data.parse_input as parse_input
 parse_input.parse_input()
 
 #f_npfile='data_scaler.npy'

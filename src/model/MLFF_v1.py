@@ -7,12 +7,12 @@ from torch.nn import init
 from torch.autograd import Variable
 import sys, os
 sys.path.append(os.getcwd())
-#import parameters as pm    
+#import config.parameters as pm    
 codepath=os.path.abspath(sys.path[0])
 sys.path.append(codepath+"/pre_data")
 
-import use_para as pm    
-# import prepare as pp
+import src.pre_data.use_para as pm    
+# import src.pre_data.prepare as pp
 # pp.readFeatnum()
 from model.dmirror import dmirror_FC
 from model.FC import f_FC

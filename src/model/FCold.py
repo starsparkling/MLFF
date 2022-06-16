@@ -8,10 +8,10 @@ from torch.nn import init
 from torch.autograd import Variable
 import sys, os
 sys.path.append(os.getcwd())
-#import parameters as pm    
-import use_para as pm    
+#import config.parameters as pm    
+import src.pre_data.use_para as pm    
 import time
-# import prepare as pp
+# import src.pre_data.prepare as pp
 # pp.readFeatnum()
 
 

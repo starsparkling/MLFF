@@ -5,12 +5,12 @@ from numpy.lib.type_check import real
 import os
 import sys
 sys.path.append(os.getcwd())
-#import parameters as pm
-import use_para as pm
-import parse_input
+#import config.parameters as pm
+import src.pre_data.use_para as pm
+import src.pre_data.parse_input as parse_input
 parse_input.parse_input()
 #
-import prepare
+import src.pre_data.prepare
 import numpy as np
 import pandas as pd
 codepath=os.path.abspath(sys.path[0])
@@ -18,7 +18,7 @@ sys.path.append(codepath+'/../lib')
 from read_all import read_allnn
 import torch
 from torch.autograd import Variable
-from scalers import DataScalers
+from src.pre_data.scalers import DataScalers
 
 #
 # check for feature_dtype, that determins

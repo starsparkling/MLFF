@@ -1,6 +1,6 @@
 import numpy as np
-import prepare
-import use_para as pm
+import src.pre_data.prepare
+import src.pre_data.use_para as pm
 
 
 class MinMaxScaler:

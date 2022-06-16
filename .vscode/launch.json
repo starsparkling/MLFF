@@ -1,0 +1,43 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "train_data_A100_98_1",
+            "type": "python",
+            // "request": "launch",
+            "request": "launch",
+            "localRoot": "@{workspaceRoot}",
+            "remoteRoot": "/home/wuxingxing/codespace/MLFF_ekf",
+            "port": 22,
+            "host": "10.18.98.1",
+            "program": "/home/wuxingxing/codespace/MLFF_ekf/src/bin/train.py",
+            "console": "integratedTerminal",
+            "env": {"PYTHONPATH": "${workspaceRoot}"},
+            "envFile": "${workspaceFolder}/.env",
+            "outputCapture": "std",
+            "justMyCode": false,
+            "args": [
+                "--dp", "True", "-n", "DeepMD_cfg_dp", "-s", "record"
+            ]
+        },
+        {
+            "name": "mlff_data_A100_98_1",
+            "type": "python",
+            // "request": "launch",
+            "request": "launch",
+            "localRoot": "@{workspaceRoot}",
+            "remoteRoot": "/home/wuxingxing/codespace/MLFF_ekf",
+            "port": 22,
+            "host": "10.18.98.1",
+            "program": "/home/wuxingxing/codespace/MLFF_ekf/src/bin/mlff.py",
+            "console": "integratedTerminal",
+            "env": {"PYTHONPATH": "${workspaceRoot}"},
+            "envFile": "${workspaceFolder}/.env",
+            "outputCapture": "std",
+            "justMyCode": false
+        }
+    ]
+}

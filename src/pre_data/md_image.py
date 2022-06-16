@@ -3,7 +3,7 @@
 import os
 import sys
 import time
-import use_para as pm
+import src.pre_data.use_para as pm
 import numpy as np
 import cupy as cp
 import pandas as pd

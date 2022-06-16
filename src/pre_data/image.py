@@ -7,7 +7,7 @@
 然后每一个MOVEMENT文件按照从属的文件夹名给出一个system名字
 更重要的是,要建立system和iamge的结构
 '''
-import use_para as pm
+import src.pre_data.use_para as pm
 import os
 import time
 import numpy as np

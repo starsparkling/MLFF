@@ -23,11 +23,11 @@ sys.path.append(codepath+'/../src/pre_data')
 sys.path.append(codepath+'/..')
 print (codepath)
 
-import use_para as pm
-import parse_input
+import src.pre_data.use_para as pm
+import src.pre_data.parse_input as parse_input
 parse_input.parse_input()
 
-#import parameters as pm
+#import config.parameters as pm
 import torch
 
 

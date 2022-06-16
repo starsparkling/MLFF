@@ -7,14 +7,14 @@ sys.path.append(codepath+'/../src/lib')
 sys.path.append(os.getcwd())
 import pandas as pd
 import numpy as np
-#import parameters as pm
-import use_para as pm
-import parse_input
+#import config.parameters as pm
+import src.pre_data.use_para as pm
+import src.pre_data.parse_input as parse_input
 parse_input.parse_input()
 
 workpath=os.path.abspath(pm.codedir)
 sys.path.append(workpath)
-import prepare as pp
+import src.pre_data.prepare as pp
 
 def write_egroup_input():
     with open(os.path.join(pm.InputPath,'egroup.in'),'w') as f:

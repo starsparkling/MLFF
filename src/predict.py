@@ -36,19 +36,19 @@ import torch.utils.data as Data
 from torch.autograd import Variable
 import math
 sys.path.append(os.getcwd())
-#import parameters as pm 
+#import config.parameters as pm 
 codepath=os.path.abspath(sys.path[0])
 sys.path.append(codepath+'/pre_data')
 sys.path.append(codepath+'/..')
-import use_para as pm
-import parse_input
+import src.pre_data.use_para as pm
+import src.pre_data.parse_input as parse_input
 parse_input.parse_input()
 #
 sys.path.append(codepath+'/lib')
 from read_all import read_allnn
 
-from data_loader_2type import MovementDataset, get_torch_data
-from scalers import DataScalers
+from src.bin.data_loader_2type import MovementDataset, get_torch_data
+from src.pre_data.scalers import DataScalers
 from utils import get_weight_grad
 from torch.utils.tensorboard import SummaryWriter
 # from tensorboardX import SummaryWriter
@@ -67,7 +67,7 @@ codepath=os.path.abspath(sys.path[0])
 sys.path.append(codepath+'/../lib')
 sys.path.append(os.getcwd())
 
-import prepare as pp 
+import src.pre_data.prepare as pp 
 import seper 
 
 # logging and our extension

@@ -6,9 +6,9 @@ import time
 import random
 import numpy as np
 import math
-#import parameters as pm
-import use_para as pm
-import parse_input
+#import config.parameters as pm
+import src.pre_data.use_para as pm
+import src.pre_data.parse_input as parse_input
 parse_input.parse_input()
 
 

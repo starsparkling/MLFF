@@ -1,12 +1,12 @@
 import os
 import numpy as np
-import use_para as pm
+import src.pre_data.use_para as pm
 
 # empty use_para, import all attributes from calculation_dir/parameters.py, import other needed attributes from default_para.py
 def parse_input():
     print('parsing parameters ... ')
-    import parameters
-    import default_para
+    import config.parameters as parameters
+    import src.pre_data.default_para as default_para
     default_attrs = default_para.__dir__()
     diy_parameters = parameters.__dir__()
     not_inputs = ['__name__', '__doc__', '__package__', '__loader__', '__spec__', '__file__', '__cached__', '__builtins__', 'np', 'os']
