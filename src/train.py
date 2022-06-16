@@ -942,7 +942,7 @@ elif (opt_scheduler == 'EXP'):
 elif (opt_scheduler == 'NONE'):
     pass
 else:
-    error("unsupported scheduler: %s" %opt_schedler)
+    error("unsupported scheduler: %s" %opt_scheduler)
     raise RuntimeError("unsupported scheduler: %s" %opt_scheduler)
 
 # optimizer = optim.AdamW([
