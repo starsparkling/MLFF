@@ -27,6 +27,21 @@ def parse_input():
     pm.nfeat_type=len(pm.use_Ftype)
     pm.ntypes=len(pm.atomType)
     pm.atomTypeNum=len(pm.atomType)
+    
+    #formating nNodes 
+
+    numAtomType = len((pm.atomType))
+
+    nodeDim = parameters.nodeDim
+
+    nNodesTemp = []     
+
+    for dim in nodeDim:
+        nNodesTemp.append([dim for i in range(numAtomType)])
+
+    pm.nNodes = np.array(nNodesTemp) 
+    
+    
     if hasattr(pm, 'nFeatures') and not hasattr(pm, 'MLFF_dmirror_cfg'):
         pm.MLFF_dmirror_cfg = [
                             ('linear', pm.nFeatures, 1, True),
