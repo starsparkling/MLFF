@@ -13,8 +13,7 @@ parse_input.parse_input()
 import numpy as np
 import pandas as pd
 sys.path.append(os.getcwd())
-workpath = os.path.abspath(pm.codedir)
-sys.path.append(workpath)
+
 import prepare as pp
 
 
