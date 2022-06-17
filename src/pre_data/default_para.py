@@ -24,7 +24,7 @@ test_data_path = r'./train_data/final_test'
 f_train_dR_neigh=''
 f_test_dR_neigh=''
 dR_neigh=False
-#dRneigh_path = r'./'
+
 DCNLayers = 5
 torch_dtype = 'float64'
 feature_dtype = 'float64'   # how the feature data files are stored
@@ -55,14 +55,11 @@ is_md100_show_X11_fig = False
 prefix = r'./'
 trainSetDir = r'./PWdata'
 fortranFitSourceDir=r'/home/liuliping/program/nnff/git_version/src/fit'
-codedir=r'/home/liuliping/program/nnff/git_version/src/lib'
+
 fitModelDir = r'./fread_dfeat'
-#genFeatDir = '/home/buyu/MLFF/new-repulsive/ML_FRAME_WORK_vdw/gen_feature'
-#genFeatDir = r'./gen_feature'
-#mdImageFileDir='/home/buyu/MLFF/MD/AlHbulk'
+
 mdImageFileDir=r'./MD'                              #设置md的初始image的文件所在的文件夹  default:'.'
 PWmatDir=r'/home/buyu/PWmat/MDAlHsml3_loop'
-#dR_neigh=False
 pbc = True
 
 dRneigh_path = trainSetDir + r'/dRneigh.dat'
