@@ -111,6 +111,8 @@ opt_groupsize= 6
 opt_blocksize = 5120
 opt_fprefactor = 2
 
+print ("network size used:")
+print (pm.nNodes)
 
 opts,args = getopt.getopt(sys.argv[1:],
     '-h-c-m-f-R-n:-a:-z:-v:-w:-u:-e:-l:-g:-t:-b:-d:-r:-s:-o:-i:-j:',
@@ -378,6 +380,7 @@ else:
     raise RuntimeError("Training: unsupported dtype: %s" %opt_dtype)
 
 # set training device
+
 if (opt_force_cpu == True):
     device = torch.device('cpu')
 else:
@@ -532,9 +535,9 @@ def train(sample_batches, model, optimizer, criterion, last_epoch, real_lr):
         summary(Force_label)
     """
 
-    loss_Etot = torch.zeros([1,1])
-    loss_Ei = torch.zeros([1,1])
-    loss_F = torch.zeros([1,1])
+    loss_Etot = torch.zeros([1,1],device = device)
+    loss_Ei = torch.zeros([1,1],device = device)
+    loss_F = torch.zeros([1,1],device = device)
     loss_Egroup = 0
     # update loss with repsect to the data used
     if pm.kfnn_trainEi:
@@ -643,10 +646,10 @@ def train_kalman(sample_batches, model, kalman, criterion, last_epoch, real_lr):
         Etot_predict, Ei_predict, Force_predict = model(input_data, dfeat, neighbor, natoms_img, egroup_weight, divider)
 
     # dtype same as torch.default
-    loss_Etot = torch.zeros([1,1])
-    loss_Ei = torch.zeros([1,1])
-    loss_F = torch.zeros([1,1])
-
+    loss_Etot = torch.zeros([1,1],device = device)
+    loss_Ei = torch.zeros([1,1], device = device)
+    loss_F = torch.zeros([1,1],device = device)
+    
     """
         update loss with repsect to the data used.
         At least 2 flags should be true. 
@@ -725,8 +728,7 @@ def valid(sample_batches, model, criterion):
     else:
         Etot_predict, Ei_predict, Force_predict = model(input_data, dfeat, neighbor, natoms_img, egroup_weight, divider)
     
-    # Egroup_predict = model.get_egroup(Ei_predict, egroup_weight, divider)
-
+    # Egroup_predict = model.get_egroup(Ei_predict, egroup_weight, divider) 
 
     # the logic is the same as training.
     """
@@ -1044,6 +1046,7 @@ for epoch in range(start_epoch, n_epoch + 1):
     RMSE_Etot = loss_Etot ** 0.5
     RMSE_Ei = loss_Ei ** 0.5
     RMSE_F = loss_F ** 0.5
+    
     info("epoch_loss = %.16f (RMSE_Etot = %.16f, RMSE_Ei = %.16f, RMSE_F = %.16f)" \
         %(loss, RMSE_Etot, RMSE_Ei, RMSE_F))
 
