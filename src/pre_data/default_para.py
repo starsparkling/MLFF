@@ -62,6 +62,8 @@ mdImageFileDir=r'./MD'                              #设置md的初始image的�
 PWmatDir=r'/home/buyu/PWmat/MDAlHsml3_loop'
 pbc = True
 
+nodeDim = [] 
+
 dRneigh_path = trainSetDir + r'/dRneigh.dat'
 dp_predict = False
 #************** DP network parameters ********************
