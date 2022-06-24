@@ -199,12 +199,17 @@ class GKalmanFilter(nn.Module):
 
         for index_i in range(len(random_index)):  # 4
             error = 0
+            
+            Etot_predict, Ei_predict, force_predict = self.model(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], inputs[5])
+            
             for index_ii in range(len(random_index[index_i][0])):  # 6
                 for j in range(3):
                     # error = 0 #if we use group , it should not be init
+                    """
                     Etot_predict, Ei_predict, force_predict = self.model(
                         inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], inputs[5]
                     )
+                    """
                     force_predict.requires_grad_(True)
                     error_tmp = (
                         Force_label[random_index[index_i][0][index_ii]][
