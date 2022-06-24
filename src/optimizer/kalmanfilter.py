@@ -201,6 +201,7 @@ class GKalmanFilter(nn.Module):
             error = 0
             
             Etot_predict, Ei_predict, force_predict = self.model(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], inputs[5])
+            force_predict.requires_grad_(True)
             
             for index_ii in range(len(random_index[index_i][0])):  # 6
                 for j in range(3):
@@ -210,7 +211,7 @@ class GKalmanFilter(nn.Module):
                         inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], inputs[5]
                     )
                     """
-                    force_predict.requires_grad_(True)
+                    
                     error_tmp = (
                         Force_label[random_index[index_i][0][index_ii]][
                             random_index[index_i][1][index_ii]
