@@ -292,7 +292,9 @@ gpu_mem  = 0.9       # tensorflow used gpu memory
 cuda_dev = '0'       # unoccupied gpu, using 'nvidia-smi' cmd
 cupyFeat=True
 tf_dtype = 'float32' # dtype of tensorflow trainning, 'float32' faster than 'float64'
+is_rand_seper = False
 test_ratio = 0.2
+
 #================================================================================
 # NN model related
 activation_func='softplus'     # could choose 'softplus' and 'elup1' now
