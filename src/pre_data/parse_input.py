@@ -32,7 +32,7 @@ def parse_input():
 
     numAtomType = len((pm.atomType))
 
-    nodeDim = parameters.nodeDim
+    nodeDim = pm.nodeDim
 
     nNodesTemp = []     
 
