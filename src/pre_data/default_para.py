@@ -298,6 +298,7 @@ test_ratio = 0.2
 activation_func='softplus'     # could choose 'softplus' and 'elup1' now
 ntypes=len(atomType)
 nLayers = 3
+nodeDim = [15,15,1]
 nNodes = np.array([[15,15],[15,15],[1,1]])
 b_init=np.array([0.0 for i in range(10)])      # energy of one atom, for different types, just a rough value
 
