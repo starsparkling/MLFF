@@ -13,7 +13,8 @@ parse_input.parse_input()
 import numpy as np
 import pandas as pd
 sys.path.append(os.getcwd())
-
+#workpath = os.path.abspath(pm.codedir)
+#sys.path.append(workpath)
 import prepare as pp
 
 
@@ -23,7 +24,6 @@ def write_egroup_input():
         f.writelines(str(pm.ntypes)+'\n')
         for i in range(pm.ntypes):
             f.writelines(str(pm.b_init[i])+'\n')
-
 
 def run_write_egroup():
     command = 'write_egroup.x > ./output/out_write_egroup'
@@ -43,7 +43,7 @@ def write_natoms_dfeat():
     f_train_dfeat = {}
     f_test_dfeat = {}
     dfeat_names = {}
-    
+     
     for i in pm.use_Ftype:
         f_train_dfeat[i] = open(pm.f_train_dfeat+str(i), 'w')
         f_test_dfeat[i] = open(pm.f_test_dfeat+str(i), 'w')
@@ -78,19 +78,36 @@ def write_natoms_dfeat():
     egroup_test = np.empty([0, egroup_all.shape[1]])
     # ep_train = np.empty([0, ep_all.shape[1]])
     # ep_test = np.empty([0, ep_all.shape[1]])
-    #print ( pm.sourceFileList)
+    
+    #used to randomly seperate training set and test set
+    from numpy.random import choice 
+
     for system in pm.sourceFileList:
 
         infodata = pd.read_csv(os.path.join(system, 'info.txt.Ftype'+str(
             pm.use_Ftype[0])), header=None, delim_whitespace=True).values[:, 0].astype(int)
+        
         natom = infodata[1]
+        
         ImgNum = infodata[2]-(len(infodata)-3)
-        if pm.test_ratio > 0 and pm.test_ratio < 1:
-            trainImgNum = int(ImgNum*(1-pm.test_ratio))
-            trainImg = np.arange(0, trainImgNum)
-            testImg = np.arange(trainImgNum, ImgNum)
 
+        if pm.test_ratio > 0 and pm.test_ratio < 1:
+            if pm.is_rand_seper:
+                # seperate randomly 
+                trainImgNum = int(ImgNum*(1-pm.test_ratio))
+                
+                randomIdx = choice(ImgNum,ImgNum,replace = False) 
+
+                trainImg = randomIdx[:trainImgNum]
+                testImg = randomIdx[trainImgNum:]
+                
+            else:
+                trainImgNum = int(ImgNum*(1-pm.test_ratio))
+                trainImg = np.arange(0, trainImgNum)
+                testImg = np.arange(trainImgNum, ImgNum)
+                                 
             for i in trainImg:
+                
                 f_train_natom.writelines(str(int(natom))+' '+str(int(natom))+'\n')
                 for mm in pm.use_Ftype:
                     f_train_dfeat[mm].writelines(str(os.path.join(system, 'dfeat.fbin.Ftype'+str(
@@ -101,6 +118,7 @@ def write_natoms_dfeat():
                 for mm in pm.use_Ftype:
                     f_test_dfeat[mm].writelines(str(os.path.join(system, 'dfeat.fbin.Ftype'+str(
                         mm)))+', '+str(i+1)+', '+str(dfeat_names[mm][int(Imgcount+i), 1])+'\n')
+                
             feat_train = np.concatenate(
                 (feat_train, feat_all[count:(count+natom*len(trainImg)), :]), axis=0)
             feat_test = np.concatenate(
