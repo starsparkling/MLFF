@@ -24,7 +24,7 @@ test_data_path = r'./train_data/final_test'
 f_train_dR_neigh=''
 f_test_dR_neigh=''
 dR_neigh=False
-
+#dRneigh_path = r'./'
 DCNLayers = 5
 torch_dtype = 'float64'
 feature_dtype = 'float64'   # how the feature data files are stored
@@ -55,14 +55,15 @@ is_md100_show_X11_fig = False
 prefix = r'./'
 trainSetDir = r'./PWdata'
 fortranFitSourceDir=r'/home/liuliping/program/nnff/git_version/src/fit'
-
+#codedir=r'/home/liuliping/program/nnff/git_version/src/lib'
 fitModelDir = r'./fread_dfeat'
-
+#genFeatDir = '/home/buyu/MLFF/new-repulsive/ML_FRAME_WORK_vdw/gen_feature'
+#genFeatDir = r'./gen_feature'
+#mdImageFileDir='/home/buyu/MLFF/MD/AlHbulk'
 mdImageFileDir=r'./MD'                              #设置md的初始image的文件所在的文件夹  default:'.'
 PWmatDir=r'/home/buyu/PWmat/MDAlHsml3_loop'
+#dR_neigh=False
 pbc = True
-
-nodeDim = [] 
 
 dRneigh_path = trainSetDir + r'/dRneigh.dat'
 dp_predict = False
@@ -121,12 +122,16 @@ use_LKalman = False
 use_SKalman = False
 nFeatures=42
 
+kalman_prefac_Ei = 1.0
+kalman_prefac_Etot = 1.0
+kalman_prefac_Force = 1.0
+
 is_scale = False
 use_storage_scaler = False
 storage_scaler = False
 
 n_epoch = 100
-itype_Ei_mean = [0.0 for i in range(10)]
+itype_Ei_mean = [0 for i in range(10)]
 batch_size = 1  # only support bn=1 so far
 nfeat_type=len(use_Ftype)
 Ftype1_para={               #2b
@@ -292,18 +297,20 @@ gpu_mem  = 0.9       # tensorflow used gpu memory
 cuda_dev = '0'       # unoccupied gpu, using 'nvidia-smi' cmd
 cupyFeat=True
 tf_dtype = 'float32' # dtype of tensorflow trainning, 'float32' faster than 'float64'
-is_rand_seper = False
+
 test_ratio = 0.2
+is_rand_seper = False 
 
 #================================================================================
 # NN model related
 activation_func='softplus'     # could choose 'softplus' and 'elup1' now
 ntypes=len(atomType)
-nLayers = 3
+nLayers = 3 
 nodeDim = [15,15,1]
 nNodes = np.array([[15,15],[15,15],[1,1]])
 b_init=np.array([0.0 for i in range(10)])      # energy of one atom, for different types, just a rough value
-
+#nLayers = 4
+#nNodes = np.array([[16,],[64,],[32,],[1,]])
 dwidth = 3.0
 
 #================================================================================
