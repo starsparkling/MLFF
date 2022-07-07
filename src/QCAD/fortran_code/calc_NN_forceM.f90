@@ -471,21 +471,23 @@ module calc_NN
 
         do 100 ii=1,nlayer
         if(ii.ne.1) then
-             do i=1,num(itype)
-                 do j=1,nodeNN(ii,itype)
-                     x=f_in(j,i,ii)
-                     if(x.gt.-150.d0.and.x.lt.150.d0) then
-                         f_out(j,i,ii)=log(1.d0+exp(x))  ! softplus
-                         f_d(j,i,ii)=1.d0/(exp(-x)+1.d0)
-                     elseif(x.le.-150.d0) then
+            do i=1,num(itype)
+                do j=1,nodeNN(ii,itype)
+                    x=f_in(j,i,ii)
+                    if(x.gt.-150.d0.and.x.lt.150.d0) then
+                        !f_out(j,i,ii)=log(1.d0+exp(x))  ! softplus
+                        !f_d(j,i,ii)=1.d0/(exp(-x)+1.d0)
+                        f_out(j, i, ii) = (exp(x)-exp(-x)) / (exp(x)+exp(-x))  ! tanh 
+                        f_d(j, i, ii) = 1.0d0 - f_out(j,i,ii)*f_out(j,i,ii)
+                    elseif(x.le.-150.d0) then
                          f_out(j,i,ii)=0.d0
                          f_d(j,i,ii)=0.d0
-                     elseif(x.ge.150.d0) then 
+                    elseif(x.ge.150.d0) then 
                          f_out(j,i,ii)=x
                          f_d(j,i,ii)=1.d0
-                     endif
-                 enddo
-             enddo
+                    endif
+                enddo
+            enddo
          elseif(ii.eq.1) then
              do i=1,num(itype)
                  do j=1,nodeNN(ii,itype)
