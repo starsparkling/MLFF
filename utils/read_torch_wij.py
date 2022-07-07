@@ -34,8 +34,12 @@ parse_input.parse_input()
 # torch bj  shape [60], [30], [1]
 # Wij.txt structure: w0, b0, w1, b1, w2, b2
 #   [42,60], [60], [60,30], [30], [30,1], [1]
+
+arg_list = sys.argv[1:]
+
 def read_wij():
-    pt_file=os.path.join('record/model/better.pt')
+    pt_name = arg_list[0]
+    pt_file=os.path.join(pt_name)
     chpt = torch.load(pt_file,map_location=torch.device('cpu'))
     nn_model = chpt['model']
     nlayers = len(nn_model) // pm.ntypes // 2
@@ -92,5 +96,11 @@ def read_scaler():
     # liuliping data_scaler.txt end
     
 if __name__ =="__main__":
+        
     read_wij()
+
+    print("network parameters extracted")
+    
     read_scaler()
+
+    print("scaler extracted")
