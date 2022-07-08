@@ -52,9 +52,9 @@ def read_wij():
     bij_all = [ [ np.zeros((info_net[ilayer]),dtype=float) for ilayer in range(nlayers) ] for itype in range(pm.ntypes)]
     with open(os.path.join(pm.fitModelDir,'Wij.txt'),'w') as f:
         f.write('test ' + str(pt_file) + '  \n')
-        f.write('shape '+str(nlayers*2)+'\n')
+        f.write('shape '+str(nlayers*2*pm.ntypes)+'\n')
         f.write('dim 1'+'\n')
-        f.write('size '+str(nlayers*2)+'\n')
+        f.write('size '+str(nlayers*2*pm.ntypes)+'\n')
         count = 0
         for itype in range(pm.ntypes):
             for ilayer in range(nlayers):
