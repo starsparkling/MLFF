@@ -130,9 +130,17 @@ class MLFFNet(nn.Module):
         #image.requires_grad_(True)
         natoms_index = [0]
         temp = 0
+        # this loop is wrong. 
+        """
         for i in natoms_img[0, 1:]:
             temp += i
             natoms_index.append(temp)    #[0,32,64]
+        """ 
+        for i in natoms_img[0, 1:]:
+            q = temp + i 
+            temp += i 
+            natoms_index.append(q)    #[0,32,64] 
+        
         
         # for i in range(len(natoms_index)-1):
         for i in range(pm.ntypes):
