@@ -38,7 +38,9 @@ parse_input.parse_input()
 arg_list = sys.argv[1:]
 
 def read_wij():
+    #first argument as input file path
     pt_name = arg_list[0]
+
     pt_file=os.path.join(pt_name)
     chpt = torch.load(pt_file,map_location=torch.device('cpu'))
     nn_model = chpt['model']
@@ -50,12 +52,15 @@ def read_wij():
 
     wij_all = [ [ np.zeros((info_net[ilayer]),dtype=float) for ilayer in range(nlayers) ] for itype in range(pm.ntypes)]
     bij_all = [ [ np.zeros((info_net[ilayer]),dtype=float) for ilayer in range(nlayers) ] for itype in range(pm.ntypes)]
+
     with open(os.path.join(pm.fitModelDir,'Wij.txt'),'w') as f:
         f.write('test ' + str(pt_file) + '  \n')
         f.write('shape '+str(nlayers*2*pm.ntypes)+'\n')
         f.write('dim 1'+'\n')
         f.write('size '+str(nlayers*2*pm.ntypes)+'\n')
+
         count = 0
+
         for itype in range(pm.ntypes):
             for ilayer in range(nlayers):
                 wij_all[itype][ilayer] = nn_model[r'models.'+str(itype)+r'.weights.'+str(ilayer)]
@@ -79,7 +84,9 @@ def read_wij():
 
 
 def read_scaler():
-    scaler = joblib.load(r'./scaler.pkl')
+    #scaler = joblib.load(r'./scaler.pkl')
+    scaler_name = arg_list[1]
+    scaler  = joblib.load(scaler_name)
     fout = open('fread_dfeat/data_scaler.txt', 'w')
     fout.write('test\n')
     fout.write('shape, ignored\n')
